@@ -1,7 +1,3 @@
-//好的，這是一個整合在一起的 HTML 匯率換算工具代碼，它使用 CSS 設置了星空背景，並使用 JavaScript 處理換算邏輯，將所有外幣都換算成新台幣 (TWD)。
-請注意：這個工具使用固定的範例匯率，並不會即時從網路獲取最新匯率。
-🌌 HTML 匯率換算工具代碼
-您可以將以下所有代碼複製並貼到一個名為 converter.html 的檔案中，然後在任何網頁瀏覽器中打開它。
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -175,18 +171,3 @@
 
 </body>
 </html>
-
-💡 代碼說明
- * HTML 結構 (<div class="container">)：
-   * 包含兩個主要的輸入欄位：金額 (<input type="number" id="amount">) 和幣別選擇 (<select id="currency">)。
-   * 一個結果顯示區塊 (<p id="result-twd">)。
- * CSS 樣式 (<style>)：
-   * 星空背景：body 設置了 background-image 使用 radial-gradient 創建了多個白色的小圓點（星星），並使用 background-size 使其分散。
-   * 動畫：@keyframes animateStarrySky 讓背景圖案緩慢移動，模擬星空運行的效果。
-   * 容器樣式：div.container 採用了半透明深藍色背景和藍色陰影，使其在星空中突出。
- * JavaScript 邏輯 (<script>)：
-   * 匯率定義：const RATES_TO_TWD 是一個物件，定義了各外幣兌換成 1 TWD 的固定匯率。
-   * 換算函數：convertCurrency() 函數會在金額輸入 (oninput) 或幣別改變 (onchange) 時觸發。
-   * 計算：const resultTWD = amount * rate; 簡單地將輸入金額乘以對應匯率。
-   * 輸出：使用 toFixed(2) 將結果四捨五入到小數點後兩位，並更新到 result-twd 元素中。
-Would you like to know how to deploy this as a simple local webpage, or perhaps learn how to integrate real-time exchange rate data (which would require using an external API)?
