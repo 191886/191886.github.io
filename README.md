@@ -1,173 +1,21 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星空匯率換算器</title>
-    <style>
-        /* -------------------------------------
-        // CSS 樣式：星空背景與佈局
-        // ------------------------------------- */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #E0FFFF; /* 淺青色文字 */
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000000; /* 基礎黑色 */
-            /* 星空背景效果 */
-            background-image: 
-                radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.6) 1px, transparent 2px),
-                radial-gradient(circle at 90% 90%, rgba(255, 255, 255, 0.8) 1.5px, transparent 3px),
-                radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.4) 1px, transparent 2px);
-            background-size: 2000px 2000px; /* 使星星分散 */
-            animation: animateStarrySky 60s linear infinite; /* 星星移動動畫 */
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Arial', sans-serif; background: linear-gradient(to bottom, #000428, #004e92); min-height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; } /* 星空背景動畫 */ .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; } .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite; } @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } } .container { background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); width: 90%; max-width: 500px; z-index: 1; } h1 { text-align: center; color: #004e92; margin-bottom: 30px; font-size: 28px; } .currency-row { margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 12px; transition: transform 0.2s; } .currency-row:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 78, 146, 0.2); } label { display: block; font-weight: bold; color: #333; margin-bottom: 8px; font-size: 16px; } .flag { margin-right: 8px; font-size: 20px; } input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 18px; transition: border-color 0.3s; } input:focus { outline: none; border-color: #004e92; } .rate-info { text-align: center; margin-top: 20px; color: #666; font-size: 14px; font-style: italic; } .reset-btn { width: 100%; padding: 12px; margin-top: 20px; background: #004e92; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background 0.3s; } .reset-btn:hover { background: #003670; } 
 
-        /* 星星移動動畫 */
-        @keyframes animateStarrySky {
-            from {
-                background-position: 0 0;
-            }
-            to {
-                background-position: 2000px 2000px;
-            }
-        }
+💱 台幣匯率換算器
 
-        .container {
-            background-color: rgba(0, 0, 50, 0.8); /* 略透明的深藍色，模擬夜空中的一個區域 */
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(70, 70, 255, 0.7); /* 藍色光暈效果 */
-            width: 90%;
-            max-width: 450px;
-            text-align: center;
-        }
+🇹🇼台幣 (TWD) 
 
-        h2 {
-            margin-top: 0;
-            color: #FFD700; /* 金色標題 */
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
+🇺🇸美元 (USD) 
 
-        .input-group {
-            margin-bottom: 25px;
-            text-align: left;
-        }
+🇯🇵日圓 (JPY) 
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #87CEFA; /* 淺藍色標籤 */
-        }
+🇪🇺歐元 (EUR) 
 
-        input[type="number"], select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #00BFFF; /* 邊框亮藍色 */
-            background-color: rgba(255, 255, 255, 0.1); /* 輸入框半透明 */
-            color: #E0FFFF;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
+🇭🇰港幣 (HKD) 
 
-        input[type="number"]:focus, select:focus {
-            outline: none;
-            border-color: #FF4500; /* 聚焦時橙紅色 */
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
-        }
+🇨🇳人民幣 (CNY) 
 
-        .result {
-            margin-top: 30px;
-            padding: 15px;
-            border: 2px solid #3CB371; /* 中綠色邊框 */
-            border-radius: 8px;
-            background-color: rgba(60, 179, 113, 0.2); /* 結果區塊半透明背景 */
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #ADFF2F; /* 螢光綠結果文字 */
-        }
-    </style>
-</head>
-<body>
+🔄 清除所有 
 
-<div class="container">
-    <h2>✨ 星空匯率換算器 ✨</h2>
+* 匯率僅供參考，實際交易請以銀行公告為準 
 
-    <div class="input-group">
-        <label for="amount">輸入金額：</label>
-        <input type="number" id="amount" value="100" min="0" oninput="convertCurrency()">
-    </div>
-
-    <div class="input-group">
-        <label for="currency">選擇外幣：</label>
-        <select id="currency" onchange="convertCurrency()">
-            <option value="USD">美元 (USD)</option>
-            <option value="JPY">日圓 (JPY)</option>
-            <option value="EUR">歐元 (EUR)</option>
-            <option value="HKD">港幣 (HKD)</option>
-            <option value="CNY">人民幣 (CNY)</option>
-        </select>
-    </div>
-
-    <div class="result">
-        換算結果 (新台幣 TWD)：
-        <p id="result-twd">請輸入金額</p>
-    </div>
-</div>
-
-<script>
-    /* -------------------------------------
-    // JavaScript 邏輯：匯率換算
-    // ------------------------------------- */
-
-    // 範例匯率：1 單位外幣 可換算成多少 TWD (新台幣)
-    // *** 這是固定值，非即時匯率 ***
-    const RATES_TO_TWD = {
-        'USD': 32.00, // 1 USD = 32.00 TWD
-        'JPY': 0.2200, // 1 JPY = 0.2200 TWD
-        'EUR': 34.50, // 1 EUR = 34.50 TWD
-        'HKD': 4.10, // 1 HKD = 4.10 TWD
-        'CNY': 4.35  // 1 CNY = 4.35 TWD
-    };
-
-    /**
-     * 執行匯率換算並顯示結果
-     */
-    function convertCurrency() {
-        // 獲取輸入值
-        const amountInput = document.getElementById('amount');
-        const currencySelect = document.getElementById('currency');
-        const resultParagraph = document.getElementById('result-twd');
-
-        const amount = parseFloat(amountInput.value);
-        const selectedCurrency = currencySelect.value;
-        const rate = RATES_TO_TWD[selectedCurrency];
-
-        // 檢查輸入是否有效
-        if (isNaN(amount) || amount <= 0) {
-            resultParagraph.textContent = '請輸入有效金額';
-            return;
-        }
-
-        // 進行換算
-        const resultTWD = amount * rate;
-
-        // 格式化結果並顯示
-        // toLocaleString('zh-TW', { style: 'currency', currency: 'TWD' }) 可以格式化為新台幣樣式
-        resultParagraph.textContent = resultTWD.toFixed(2).toLocaleString('zh-TW') + ' TWD';
-    }
-
-    // 頁面載入時執行一次換算，以顯示初始結果
-    window.onload = convertCurrency;
-</script>
-
-</body>
-</html>
+// 生成星空背景 const starsContainer = document.getElementById('stars'); for (let i = 0; i < 200; i++) { const star = document.createElement('div'); star.className = 'star'; star.style.width = Math.random() * 3 + 'px'; star.style.height = star.style.width; star.style.left = Math.random() * 100 + '%'; star.style.top = Math.random() * 100 + '%'; star.style.animationDelay = Math.random() * 3 + 's'; starsContainer.appendChild(star); } // 匯率設定 (相對於台幣) const rates = { twd: 1, usd: 0.031, // 1 TWD = 0.031 USD jpy: 4.75, // 1 TWD = 4.75 JPY eur: 0.029, // 1 TWD = 0.029 EUR hkd: 0.24, // 1 TWD = 0.24 HKD cny: 0.22 // 1 TWD = 0.22 CNY }; // 取得所有輸入框 const inputs = { twd: document.getElementById('twd'), usd: document.getElementById('usd'), jpy: document.getElementById('jpy'), eur: document.getElementById('eur'), hkd: document.getElementById('hkd'), cny: document.getElementById('cny') }; // 轉換函數 function convert(fromCurrency) { const value = parseFloat(inputs[fromCurrency].value); if (isNaN(value) || value === '') { return; } // 先轉換成台幣 const twdValue = value / rates[fromCurrency]; // 再從台幣轉換成其他貨幣 for (let currency in inputs) { if (currency !== fromCurrency) { const convertedValue = twdValue * rates[currency]; inputs[currency].value = convertedValue.toFixed(2); } } } // 為每個輸入框添加事件監聽 for (let currency in inputs) { inputs[currency].addEventListener('input', function() { if (this.value === '') { clearAll(); } else { convert(currency); } }); } // 清除所有輸入 function clearAll() { for (let currency in inputs) { inputs[currency].value = ''; } } // 重置按鈕 function resetAll() { clearAll(); inputs.twd.focus(); } 
